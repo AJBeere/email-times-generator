@@ -4,17 +4,31 @@ import EmailTimes from '../models/emailTimes.js';
 
 const router = express.Router();
 
+// router.get('/get-email-times', (req, res) => {
+//   EmailTimes.find({}, (err, data) => {
+//       if (err) {
+//           res.status(500).send(err);
+//       }
+//       if (data.length > 0) {
+//         res.status(200).send(data.sort((a, b) => b.timestamp - a.timestamp)[0].emailTimes);
+//       } else {
+//         res.status(200).send([]);
+//       }
+//   });
+// });
+
 router.get('/get-email-times', (req, res) => {
-  EmailTimes.find({}, (err, data) => {
-      if (err) {
-          res.status(500).send(err);
-      }
-      if (data.length > 0) {
-        res.status(200).send(data.sort((a, b) => b.timestamp - a.timestamp)[0].emailTimes);
-      } else {
-        res.status(200).send([]);
-      }
-  });
+  EmailTimes.find().sort({ timestamp: -1 }).limit(1)
+      .exec((err, data) => {
+          if (err) {
+              res.status(500).send(err);
+          }
+          if (data.length > 0) {
+            res.status(200).send(data[0].emailTimes);
+          } else {
+            res.status(200).send([]);
+          }
+      });
 });
 
 router.post('/generate-email-times', (req, res) => {

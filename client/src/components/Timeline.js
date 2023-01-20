@@ -3,7 +3,7 @@ import Card from "./Card";
 import { transformForTimeline } from "../services/transformForTimeline";
 
 const Timeline = ({ emailTimes }) => {
-  if (emailTimes.length === 0) return <p>Hello</p>
+  // if (emailTimes.length === 0) return <p>Hello</p>
 
   const allEmailTImes = transformForTimeline(emailTimes);
 

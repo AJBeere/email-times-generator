@@ -8,7 +8,6 @@ const Display = ({ emailTimes }) => {
   return (
     <div className="lists-container">
       {emailTimes.map((arr, index) => (
-        // <CodeSnippet code={`[${arr}]`} key={index}/>
         <EmailTimes emailTimes={arr} />
       ))}
     </div>
